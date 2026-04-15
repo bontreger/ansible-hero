@@ -2,6 +2,9 @@
 
 *A short browser quest for anyone who has ever watched automation stall on policy, dependencies, or the gap between “dev” and “prod.”*
 
+[Play it now!](https://bontreger.github.io/ansible-hero/)
+
+
 ![Ansible Hero battle screen](docs/images/ansible-hero-screenshot.png)
 
 ## The realm’s plight
