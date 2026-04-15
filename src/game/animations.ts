@@ -557,5 +557,240 @@ export class BattleStage {
       holdHurtAfter();
       return;
     }
+
+    if (kind === "laserBeam") {
+      const sx = player.x + player.w * 0.55;
+      const sy = player.y + player.h * 0.22;
+      const tx = enemy.x + enemy.w * 0.45;
+      const ty = enemy.y + enemy.h * 0.35;
+      const fxMax = Math.min(w, h) * 0.22;
+      await this.frameLoop(540, (t) => {
+        const u = easeOutQuad(t);
+        const x = lerp(sx, tx, u);
+        const y = lerp(sy, ty, u);
+        this.drawStatic(0, {
+          fxExtra: (ctx) => {
+            this.drawFxCentered(ctx, assets.fxLaserBeam, x, y, fxMax, 0.9);
+          },
+        });
+      });
+      await this.frameLoop(200, () =>
+        this.drawStatic(4, { enemyUseHurt: true }),
+      );
+      holdHurtAfter();
+      return;
+    }
+
+    if (kind === "sonicWave") {
+      const fxMax = Math.min(w, h) * 0.22;
+      await this.frameLoop(420, (t) => {
+        const u = easeOutQuad(t);
+        const cx = lerp(player.x + player.w * 0.85, enemy.x + enemy.w * 0.35, u);
+        const cy = player.y + player.h * 0.38;
+        this.drawStatic(0, {
+          fxExtra: (ctx) => {
+            this.drawFxCentered(ctx, assets.fxSonicWave, cx, cy, fxMax);
+          },
+        });
+      });
+      let shake = 6;
+      await this.frameLoop(120, () =>
+        this.drawStatic(shake--, { enemyUseHurt: true }),
+      );
+      holdHurtAfter();
+      return;
+    }
+
+    if (kind === "shockwaveRing") {
+      const fxMax = Math.min(w, h) * 0.24;
+      await this.frameLoop(520, (t) => {
+        const u = easeOutQuad(t);
+        const cx = lerp(player.x + player.w * 0.72, enemy.x + enemy.w * 0.42, u);
+        const cy = lerp(
+          player.y + player.h * 0.28,
+          enemy.y + enemy.h * 0.32,
+          u * 0.85,
+        );
+        this.drawStatic(0, {
+          fxExtra: (ctx) => {
+            this.drawFxCentered(ctx, assets.fxShockwaveRing, cx, cy, fxMax, 0.92);
+          },
+        });
+      });
+      let shake = 5;
+      await this.frameLoop(140, () =>
+        this.drawStatic(shake--, { enemyUseHurt: true }),
+      );
+      holdHurtAfter();
+      return;
+    }
+
+    if (kind === "iceVolley") {
+      const sx = player.x + player.w * 0.75;
+      const sy = player.y + player.h * 0.35;
+      const tx = enemy.x + enemy.w * 0.42;
+      const ty = enemy.y + enemy.h * 0.38;
+      const fxMax = Math.min(w, h) * 0.18;
+      await this.frameLoop(520, (t) => {
+        const u = easeOutQuad(t);
+        const x = lerp(sx, tx, u);
+        const y = lerp(sy, ty, u);
+        this.drawStatic(0, {
+          fxExtra: (ctx) => {
+            this.drawFxCentered(ctx, assets.fxIceVolley, x, y, fxMax, 0.85);
+          },
+        });
+      });
+      await this.frameLoop(420, (t) => {
+        const shake = t * 10;
+        this.drawStatic(shake, {
+          enemyUseHurt: true,
+          fxExtra: (ctx) => {
+            this.drawFxCentered(
+              ctx,
+              assets.fxIceVolley,
+              tx,
+              ty,
+              fxMax,
+              1.1 + t * 1.6,
+            );
+          },
+        });
+      });
+      holdHurtAfter();
+      return;
+    }
+
+    if (kind === "waterSpiral") {
+      const fxMax = Math.min(w, h) * 0.23;
+      await this.frameLoop(480, (t) => {
+        const u = easeOutQuad(t);
+        const cx = lerp(player.x + player.w * 0.68, enemy.x + enemy.w * 0.4, u);
+        const cy = lerp(player.y + player.h * 0.32, enemy.y + enemy.h * 0.36, u * 0.9);
+        this.drawStatic(0, {
+          fxExtra: (ctx) => {
+            this.drawFxCentered(ctx, assets.fxWaterSpiral, cx, cy, fxMax, 0.95);
+          },
+        });
+      });
+      let shake = 5;
+      await this.frameLoop(120, () =>
+        this.drawStatic(shake--, { enemyUseHurt: true }),
+      );
+      holdHurtAfter();
+      return;
+    }
+
+    if (kind === "meteorStreak") {
+      const sx = player.x + player.w * 0.4;
+      const sy = player.y - h * 0.06;
+      const tx = enemy.x + enemy.w * 0.45;
+      const ty = enemy.y + enemy.h * 0.4;
+      const fxMax = Math.min(w, h) * 0.2;
+      await this.frameLoop(560, (t) => {
+        const u = easeOutQuad(t);
+        const x = lerp(sx, tx, u);
+        const y = lerp(sy, ty, u);
+        this.drawStatic(0, {
+          fxExtra: (ctx) => {
+            this.drawFxCentered(ctx, assets.fxMeteorStreak, x, y, fxMax, 0.88);
+          },
+        });
+      });
+      await this.frameLoop(380, (t) => {
+        const shake = t * 9;
+        this.drawStatic(shake, {
+          enemyUseHurt: true,
+          fxExtra: (ctx) => {
+            this.drawFxCentered(
+              ctx,
+              assets.fxMeteorStreak,
+              tx,
+              ty,
+              fxMax,
+              1.05 + t * 1.4,
+            );
+          },
+        });
+      });
+      holdHurtAfter();
+      return;
+    }
+
+    if (kind === "holySwordRain") {
+      const cx = enemy.x + enemy.w * 0.45;
+      const cy = enemy.y + enemy.h * 0.4;
+      const fxMax = Math.min(w, h) * 0.24;
+      await this.frameLoop(620, (t) => {
+        const pulse = 0.85 + 0.2 * Math.sin(t * Math.PI * 4);
+        this.drawStatic(0, {
+          fxExtra: (ctx) => {
+            this.drawFxCentered(ctx, assets.fxHolySwordRain, cx, cy, fxMax, pulse);
+          },
+        });
+      });
+      let shake = 8;
+      await this.frameLoop(150, () =>
+        this.drawStatic(shake--, { enemyUseHurt: true }),
+      );
+      holdHurtAfter();
+      return;
+    }
+
+    if (kind === "poisonBio") {
+      const fxMax = Math.min(w, h) * 0.24;
+      await this.frameLoop(440, (t) => {
+        const u = easeOutQuad(t);
+        const cx = lerp(player.x + player.w * 0.8, enemy.x + enemy.w * 0.38, u);
+        const cy = player.y + player.h * 0.4;
+        this.drawStatic(0, {
+          fxExtra: (ctx) => {
+            this.drawFxCentered(ctx, assets.fxPoisonBio, cx, cy, fxMax);
+          },
+        });
+      });
+      let shake = 7;
+      await this.frameLoop(130, () =>
+        this.drawStatic(shake--, { enemyUseHurt: true }),
+      );
+      holdHurtAfter();
+      return;
+    }
+
+    if (kind === "lightningFork") {
+      const fxMax = Math.min(w, h) * 0.26;
+      const cx = enemy.x + enemy.w * 0.42;
+      const cy = enemy.y + enemy.h * 0.46;
+      await this.frameLoop(380, (t) => {
+        const pulse = 0.82 + 0.22 * Math.sin(t * Math.PI * 3);
+        this.drawStatic(0, {
+          enemyUseHurt: t > 0.5,
+          fxExtra: (ctx) => {
+            this.drawFxCentered(ctx, assets.fxLightningFork, cx, cy, fxMax, pulse);
+          },
+        });
+      });
+      holdHurtAfter();
+      return;
+    }
+
+    if (kind === "summonCircle") {
+      const fxMax = Math.min(w, h) * 0.28;
+      const cx = enemy.x + enemy.w * 0.5;
+      const cy = enemy.y + enemy.h * 0.62;
+      await this.frameLoop(420, (t) => {
+        const pulse = 0.88 + 0.16 * Math.sin(t * Math.PI * 2.5);
+        this.drawStatic(0, {
+          enemyUseHurt: t > 0.55,
+          fxExtra: (ctx) => {
+            this.drawFxCentered(ctx, assets.fxSummonCircle, cx, cy, fxMax, pulse);
+          },
+        });
+      });
+      holdHurtAfter();
+      return;
+    }
+
+    await this.frameLoop(320, () => this.drawStatic(0));
   }
 }

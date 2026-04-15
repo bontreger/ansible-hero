@@ -39,7 +39,7 @@ export const aiHydraBoss: EnemyDefinition = {
           description:
             "Ban all AI-assisted coding so every line is typed only by human fingers.",
           effectiveness: "not",
-          fxKind: "slash",
+          fxKind: "sonicWave",
           enemyResponse:
             "Hard bans maximize custody of every keystroke — the trade is shadow channels where people still paste help, and velocity quietly walks out the side door.",
         },
@@ -49,7 +49,7 @@ export const aiHydraBoss: EnemyDefinition = {
           description:
             "Publish clear guidance so teams can use public models for generic tasks while keeping proprietary data out of prompts, uploads, and logs.",
           effectiveness: "slight",
-          fxKind: "jump",
+          fxKind: "waterSpiral",
           enemyResponse:
             "Teams keep modern tooling with guardrails they can repeat — the trade is that guidance must stay fresh as vendors and plugins shift weekly.",
         },
@@ -59,7 +59,7 @@ export const aiHydraBoss: EnemyDefinition = {
           description:
             "Offer an organization-approved catalog of vetted public models and plugins so reuse stays fast inside a known boundary.",
           effectiveness: "normal",
-          fxKind: "punch",
+          fxKind: "lightningFork",
           enemyResponse:
             "Innovation keeps pace with a shelf everyone can trust — the trade is curator labor so the catalog does not rot into shelfware.",
         },
@@ -69,7 +69,7 @@ export const aiHydraBoss: EnemyDefinition = {
           description:
             "Host approved models inside the boundary with telemetry, data residency, and controlled prompts.",
           effectiveness: "super",
-          fxKind: "fireball",
+          fxKind: "laserBeam",
           enemyResponse:
             "The first head wilts — creativity stays inside the wall, telemetry proves it, and the hydra hisses because you stole its favorite fear.",
         },
@@ -86,7 +86,7 @@ export const aiHydraBoss: EnemyDefinition = {
           description:
             "Trust that contributors will simply be careful when AI suggests risky refactors.",
           effectiveness: "not",
-          fxKind: "slash",
+          fxKind: "poisonBio",
           enemyResponse:
             "This keeps reviews lightweight and contributors autonomous — the trade is that subtle regressions arrive without a receipt when nobody logged which suggestion landed.",
         },
@@ -96,7 +96,7 @@ export const aiHydraBoss: EnemyDefinition = {
           description:
             "Rely on informal peer review without mandatory checklists for AI-touched files.",
           effectiveness: "slight",
-          fxKind: "jump",
+          fxKind: "meteorStreak",
           enemyResponse:
             "Peers still read each other’s diffs with goodwill — the trade is skimmed passes and style nits that miss silent logic shifts unless cadence is sacred.",
         },
@@ -106,7 +106,7 @@ export const aiHydraBoss: EnemyDefinition = {
           description:
             "Enforce branching rules, required reviewers, and policy gates on merges that include generated snippets.",
           effectiveness: "normal",
-          fxKind: "punch",
+          fxKind: "summonCircle",
           enemyResponse:
             "Rules bite where risk concentrates — the hydra shrinks a ring — yet clever extensions still probe runtime paths your policy never imagined.",
         },
@@ -116,7 +116,7 @@ export const aiHydraBoss: EnemyDefinition = {
           description:
             "Run tests, static analysis, and sandboxed execution on AI-assisted changes before they touch trunk.",
           effectiveness: "super",
-          fxKind: "fireball",
+          fxKind: "holySwordRain",
           enemyResponse:
             "Another head goes slack — bad ideas die in sand before they learn your customers’ names, and the creature hates reproducible proof.",
         },
@@ -133,7 +133,7 @@ export const aiHydraBoss: EnemyDefinition = {
           description:
             "Let engineers paste AI-suggested fixes straight into hot paths when incidents demand minutes, not committee time.",
           effectiveness: "not",
-          fxKind: "slash",
+          fxKind: "iceVolley",
           enemyResponse:
             "Outages cool fast when experts wield the assistant like a scalpel — the trade is postmortems must still reconstruct intent or the hero becomes the single point of failure.",
         },
@@ -143,7 +143,7 @@ export const aiHydraBoss: EnemyDefinition = {
           description:
             "Treat AI-generated diffs like any other commit in the standard merge and deploy pipeline.",
           effectiveness: "slight",
-          fxKind: "jump",
+          fxKind: "shockwaveRing",
           enemyResponse:
             "One pipeline keeps operators from juggling special cases — the trade is you must ensure the same tests and reviewers truly stress generated logic, not just syntax.",
         },
@@ -153,7 +153,7 @@ export const aiHydraBoss: EnemyDefinition = {
           description:
             "Route AI-authored changes through a dedicated integration branch until a human promotes them into trunk.",
           effectiveness: "normal",
-          fxKind: "punch",
+          fxKind: "summonCircle",
           enemyResponse:
             "Quarantine gives reviewers air to read intent — the hydra staggers — while humans keep the pen that merges learning into production.",
         },
@@ -163,7 +163,7 @@ export const aiHydraBoss: EnemyDefinition = {
           description:
             "Pair automated pipeline testing with policy enforcement so AI-touched files cannot drift past failing checks or forbidden patterns.",
           effectiveness: "super",
-          fxKind: "fireball",
+          fxKind: "meteorStreak",
           enemyResponse:
             "The last head falls — the lair dims — you did not banish curiosity, you yoked it to discipline, and the quest remembers your strike.",
           equipmentReward: {

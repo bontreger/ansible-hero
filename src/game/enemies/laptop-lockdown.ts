@@ -17,7 +17,7 @@ export const laptopLockdown: EnemyDefinition = {
       description:
         "Assume smart engineers will improvise their own tools and merge conflicts without a shared baseline.",
       effectiveness: "not",
-      fxKind: "slash",
+      fxKind: "sonicWave",
       enemyResponse:
         "This honors local creativity and keeps nobody waiting on a platform team — the trade is that brilliance does not broadcast itself, so onboarding and parity lean on hero memory instead of a shared forge.",
     },
@@ -47,7 +47,7 @@ export const laptopLockdown: EnemyDefinition = {
       description:
         "Offer browser-based, managed developer spaces with pinned images and centralized updates.",
       effectiveness: "super",
-      fxKind: "fireball",
+      fxKind: "iceVolley",
       enemyResponse:
         "Managed spaces deliver the same desk to everyone, updates ride the platform instead of folklore, and the laptop stops being the fragile altar where every build must pray.",
       equipmentReward: {

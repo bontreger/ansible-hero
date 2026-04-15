@@ -16,7 +16,7 @@ export const messengerIntern: EnemyDefinition = {
       description:
         "Keep automation on a leash: engineers only run playbooks when another engineer pings them to do it.",
       effectiveness: "not",
-      fxKind: "slash",
+      fxKind: "lightningFork",
       enemyResponse:
         "Human sponsorship keeps every run intentional — the trade is quiet nights when the pager fires but the runbook waits for permission.",
     },
@@ -26,7 +26,7 @@ export const messengerIntern: EnemyDefinition = {
       description:
         "Bundle risky automation changes into CAB-style approval that lands in the next maintenance window instead of every ad hoc tweak.",
       effectiveness: "slight",
-      fxKind: "jump",
+      fxKind: "holySwordRain",
       enemyResponse:
         "Batching change gives operators predictable airtime to read diffs — the trade is that urgent fixes still need a fast lane or the queue becomes the real incident.",
     },
@@ -36,7 +36,7 @@ export const messengerIntern: EnemyDefinition = {
       description:
         "Require a ticket to open a ticket; every request spawns paperwork before anyone may touch automation.",
       effectiveness: "normal",
-      fxKind: "punch",
+      fxKind: "summonCircle",
       enemyResponse:
         "Paper trails make intent visible to auditors — the trade is meta-work that can starve the real fix unless templates stay ruthlessly short.",
     },
@@ -46,7 +46,7 @@ export const messengerIntern: EnemyDefinition = {
       description:
         "When the fix is deterministic, let events trigger automation so the next step runs without a human router.",
       effectiveness: "super",
-      fxKind: "fireball",
+      fxKind: "meteorStreak",
       enemyResponse:
         "Facts wake playbooks, handoffs serialize in software instead of spines, and the intern can finally breathe while the machinery keeps tempo.",
       equipmentReward: {

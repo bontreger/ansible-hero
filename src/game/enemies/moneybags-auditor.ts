@@ -16,7 +16,7 @@ export const moneybagsAuditor: EnemyDefinition = {
       description:
         "Ship automation without capturing baseline time, error rates, or rework before and after.",
       effectiveness: "not",
-      fxKind: "slash",
+      fxKind: "poisonBio",
       enemyResponse:
         "Shipping keeps the team’s momentum sacred — the trade is that renewal season has no receipts, so good work can still look like hobbycraft to the ledger.",
     },
@@ -26,7 +26,7 @@ export const moneybagsAuditor: EnemyDefinition = {
       description:
         "Report only activity counts — runs per day, lines changed — without tying them to outcomes.",
       effectiveness: "slight",
-      fxKind: "jump",
+      fxKind: "meteorStreak",
       enemyResponse:
         "Activity charts prove the machinery is alive — the trade is they rarely prove relief, so finance still wonders what headcount you freed.",
     },
@@ -36,7 +36,7 @@ export const moneybagsAuditor: EnemyDefinition = {
       description:
         "Track cycle time, failure recovery, and quality signals that precede revenue impact.",
       effectiveness: "normal",
-      fxKind: "punch",
+      fxKind: "iceVolley",
       enemyResponse:
         "Leading indicators sharpen the narrative before dollars land — execs see where automation relieved pressure while you still build the bridge to booked savings.",
     },
@@ -46,7 +46,7 @@ export const moneybagsAuditor: EnemyDefinition = {
       description:
         "Model cost avoidance and revenue effects so ROI survives scrutiny and expected return ranks which automations get funded next.",
       effectiveness: "super",
-      fxKind: "fireball",
+      fxKind: "summonCircle",
       enemyResponse:
         "The purse opens: savings and risk reduction are spelled in the auditor’s ink — automation graduates from experiment to line item, and the backlog inherits oxygen.",
       equipmentReward: {

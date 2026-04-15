@@ -33,6 +33,16 @@ export const SPRITE_URLS = {
   fxGateSigil: assetUrl("sprites/fx/gate-sigil-rune.png"),
   fxGateCrown: assetUrl("sprites/fx/gate-crown-beam.png"),
   fxDarkHex: assetUrl("sprites/fx/dark-grimoire-hex.png"),
+  fxLaserBeam: assetUrl("sprites/fx/laser-beam-horizontal.png"),
+  fxSonicWave: assetUrl("sprites/fx/sonic-crescent-wave.png"),
+  fxShockwaveRing: assetUrl("sprites/fx/ground-shockwave-ring.png"),
+  fxIceVolley: assetUrl("sprites/fx/ice-volley-cluster.png"),
+  fxWaterSpiral: assetUrl("sprites/fx/water-spiral-orb.png"),
+  fxMeteorStreak: assetUrl("sprites/fx/meteor-streak.png"),
+  fxHolySwordRain: assetUrl("sprites/fx/holy-sword-rain.png"),
+  fxPoisonBio: assetUrl("sprites/fx/poison-bio-burst.png"),
+  fxLightningFork: assetUrl("sprites/fx/lightning-fork-burst.png"),
+  fxSummonCircle: assetUrl("sprites/fx/summon-circle-floor.png"),
 } as const;
 
 export type ChromaKeyedCanvas = HTMLCanvasElement;
@@ -59,6 +69,16 @@ export interface BattleAssets {
   fxGateSigil: ChromaKeyedCanvas;
   fxGateCrown: ChromaKeyedCanvas;
   fxDarkHex: ChromaKeyedCanvas;
+  fxLaserBeam: ChromaKeyedCanvas;
+  fxSonicWave: ChromaKeyedCanvas;
+  fxShockwaveRing: ChromaKeyedCanvas;
+  fxIceVolley: ChromaKeyedCanvas;
+  fxWaterSpiral: ChromaKeyedCanvas;
+  fxMeteorStreak: ChromaKeyedCanvas;
+  fxHolySwordRain: ChromaKeyedCanvas;
+  fxPoisonBio: ChromaKeyedCanvas;
+  fxLightningFork: ChromaKeyedCanvas;
+  fxSummonCircle: ChromaKeyedCanvas;
 }
 
 function loadImage(src: string): Promise<HTMLImageElement> {
@@ -275,6 +295,16 @@ export function loadBattleAssets(): Promise<BattleAssets> {
       fxGateSigilImg,
       fxGateCrownImg,
       fxDarkHexImg,
+      fxLaserBeamImg,
+      fxSonicWaveImg,
+      fxShockwaveRingImg,
+      fxIceVolleyImg,
+      fxWaterSpiralImg,
+      fxMeteorStreakImg,
+      fxHolySwordRainImg,
+      fxPoisonBioImg,
+      fxLightningForkImg,
+      fxSummonCircleImg,
       enemyMap,
     ] = await Promise.all([
       loadImage(SPRITE_URLS.bg),
@@ -323,6 +353,56 @@ export function loadBattleAssets(): Promise<BattleAssets> {
         SPRITE_URLS.fxSlash,
         "dark-grimoire-hex.png",
       ),
+      loadImageOrFallback(
+        SPRITE_URLS.fxLaserBeam,
+        SPRITE_URLS.fxGateCrown,
+        "laser-beam-horizontal.png",
+      ),
+      loadImageOrFallback(
+        SPRITE_URLS.fxSonicWave,
+        SPRITE_URLS.fxSlash,
+        "sonic-crescent-wave.png",
+      ),
+      loadImageOrFallback(
+        SPRITE_URLS.fxShockwaveRing,
+        SPRITE_URLS.fxPrayer,
+        "ground-shockwave-ring.png",
+      ),
+      loadImageOrFallback(
+        SPRITE_URLS.fxIceVolley,
+        SPRITE_URLS.fxFireball,
+        "ice-volley-cluster.png",
+      ),
+      loadImageOrFallback(
+        SPRITE_URLS.fxWaterSpiral,
+        SPRITE_URLS.fxGateCharm,
+        "water-spiral-orb.png",
+      ),
+      loadImageOrFallback(
+        SPRITE_URLS.fxMeteorStreak,
+        SPRITE_URLS.fxFireball,
+        "meteor-streak.png",
+      ),
+      loadImageOrFallback(
+        SPRITE_URLS.fxHolySwordRain,
+        SPRITE_URLS.fxGateCrown,
+        "holy-sword-rain.png",
+      ),
+      loadImageOrFallback(
+        SPRITE_URLS.fxPoisonBio,
+        SPRITE_URLS.fxDarkHex,
+        "poison-bio-burst.png",
+      ),
+      loadImageOrFallback(
+        SPRITE_URLS.fxLightningFork,
+        SPRITE_URLS.fxGateSigil,
+        "lightning-fork-burst.png",
+      ),
+      loadImageOrFallback(
+        SPRITE_URLS.fxSummonCircle,
+        SPRITE_URLS.fxGateSigil,
+        "summon-circle-floor.png",
+      ),
       loadEnemySprites(),
     ]);
 
@@ -342,6 +422,16 @@ export function loadBattleAssets(): Promise<BattleAssets> {
       fxGateSigil: applyChromaKeySprite(fxGateSigilImg),
       fxGateCrown: applyChromaKeySprite(fxGateCrownImg),
       fxDarkHex: applyChromaKeySprite(fxDarkHexImg),
+      fxLaserBeam: applyChromaKeySprite(fxLaserBeamImg),
+      fxSonicWave: applyChromaKeySprite(fxSonicWaveImg),
+      fxShockwaveRing: applyChromaKeySprite(fxShockwaveRingImg),
+      fxIceVolley: applyChromaKeySprite(fxIceVolleyImg),
+      fxWaterSpiral: applyChromaKeySprite(fxWaterSpiralImg),
+      fxMeteorStreak: applyChromaKeySprite(fxMeteorStreakImg),
+      fxHolySwordRain: applyChromaKeySprite(fxHolySwordRainImg),
+      fxPoisonBio: applyChromaKeySprite(fxPoisonBioImg),
+      fxLightningFork: applyChromaKeySprite(fxLightningForkImg),
+      fxSummonCircle: applyChromaKeySprite(fxSummonCircleImg),
     };
     return cached;
   })();

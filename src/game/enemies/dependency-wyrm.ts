@@ -17,7 +17,7 @@ export const dependencyWyrm: EnemyDefinition = {
       description:
         "Let every developer fetch their own dependencies ad hoc — whatever feels right on the laptop, no shared lockfiles or manifests.",
       effectiveness: "not",
-      fxKind: "darkHex",
+      fxKind: "poisonBio",
       enemyResponse:
         "This keeps individuals unblocked on day one — the trade is that “what we run” becomes private folklore instead of a contract the whole fleet can repeat.",
     },
@@ -27,7 +27,7 @@ export const dependencyWyrm: EnemyDefinition = {
       description:
         "Share a team virtual environment and pin a few top-level packages without full reproducibility.",
       effectiveness: "slight",
-      fxKind: "jump",
+      fxKind: "meteorStreak",
       enemyResponse:
         "A shared talisman pulls most people onto one path — the trade is fragile edges where OS patches and laptop drift still argue under the hood.",
     },
@@ -47,7 +47,7 @@ export const dependencyWyrm: EnemyDefinition = {
       description:
         "Adopt execution-environment builds that mirror automation content in the developer workspace.",
       effectiveness: "super",
-      fxKind: "fireball",
+      fxKind: "iceVolley",
       enemyResponse:
         "The wyrm thins: the same dependency graph is exercised early, roles and collections resolve in one truth, and “works on my machine” retires to myth.",
       equipmentReward: {

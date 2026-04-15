@@ -16,7 +16,7 @@ export const productionRedTape: EnemyDefinition = {
       description:
         "Move fast into production because you trust engineers’ judgment, ownership, and on-call culture more than heavyweight gates.",
       effectiveness: "not",
-      fxKind: "prayer",
+      fxKind: "shockwaveRing",
       enemyResponse:
         "This bets on people who know the system — velocity and morale stay high — the trade is that trust works best when incidents still get blameless learning and rollback is muscle memory, not luck.",
     },
@@ -46,7 +46,7 @@ export const productionRedTape: EnemyDefinition = {
       description:
         "Keep integrated tests in the pipeline and promote only when the build proves the change against realistic checks.",
       effectiveness: "super",
-      fxKind: "punch",
+      fxKind: "holySwordRain",
       enemyResponse:
         "Green means something now — production receives code that already lived under scrutiny, and the warden nods because the story matches the diff.",
       equipmentReward: {

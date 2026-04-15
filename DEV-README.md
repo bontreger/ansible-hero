@@ -47,7 +47,7 @@ To resize only (without a full build): `npm run sprites:optimize`.
 
 To refresh active sprites from your local `originals/` copies: `npm run sprites:restore` then `npm run sprites:optimize`.
 
-**Optional future FX** (see [`public/sprites/prompts.txt`](public/sprites/prompts.txt)): `restore-sprites.mjs` also copies those PNGs **if** they exist in `originals/` (missing files are skipped with a log line). They are not required for the current build.
+**Optional future FX** (see [`public/sprites/prompts.txt`](public/sprites/prompts.txt)): `restore-sprites.mjs` copies them from `originals/` into `public/sprites/fx/` (canonical names). Missing sources are skipped with a log line. The laser-beam art may be saved as `laster-beam-horizontal.png` in originals; the script accepts that alias for `laser-beam-horizontal.png`.
 
 **Masters vs shipped:** keep huge source PNGs in `originals/` locally, or outside the repo; ship optimized files under `bg/`, `enemies/`, etc.
 

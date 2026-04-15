@@ -18,7 +18,18 @@ export type BattleFxKind =
   /** Gatekeeper: crown / beam */
   | "gateCrown"
   /** Dependency wyrm: dark hex burst */
-  | "darkHex";
+  | "darkHex"
+  /** Extra FX sprites (see public/sprites/fx/) */
+  | "laserBeam"
+  | "sonicWave"
+  | "shockwaveRing"
+  | "iceVolley"
+  | "waterSpiral"
+  | "meteorStreak"
+  | "holySwordRain"
+  | "poisonBio"
+  | "lightningFork"
+  | "summonCircle";
 
 export type GamePhase =
   | "menu"

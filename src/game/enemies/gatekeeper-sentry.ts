@@ -16,7 +16,7 @@ export const gatekeeperSentry: EnemyDefinition = {
       description:
         "Reject outside libraries entirely so every dependency is rewritten in-house from scratch.",
       effectiveness: "not",
-      fxKind: "prayer",
+      fxKind: "shockwaveRing",
       enemyResponse:
         "This maximizes control of the supply chain you can see — the trade is slower ships and duplicated effort while the wider ecosystem keeps shipping fixes you will not inherit.",
     },
@@ -26,7 +26,7 @@ export const gatekeeperSentry: EnemyDefinition = {
       description:
         "Allow any paste-in from the public internet with no scanning or provenance trail.",
       effectiveness: "slight",
-      fxKind: "gateCharm",
+      fxKind: "waterSpiral",
       enemyResponse:
         "Innovators move at the speed of curiosity — the trade is that speed without receipts invites poisoned tarballs and secrets in places audits never mapped.",
     },
@@ -36,7 +36,7 @@ export const gatekeeperSentry: EnemyDefinition = {
       description:
         "Review outside content case-by-case in email threads without a central catalog or SLAs.",
       effectiveness: "normal",
-      fxKind: "gateSigil",
+      fxKind: "lightningFork",
       enemyResponse:
         "Human judgment stays in the loop where it matters — the trade is reviewer fatigue and fuzzy memory unless the decisions land in a catalog everyone can query later.",
     },
@@ -46,7 +46,7 @@ export const gatekeeperSentry: EnemyDefinition = {
       description:
         "Scan artifacts, maintain a secure internal library, and run an intake process for new upstream content.",
       effectiveness: "super",
-      fxKind: "gateCrown",
+      fxKind: "laserBeam",
       enemyResponse:
         "Reuse accelerates with evidence: approved packages, repeatable pulls, and audit trails — the gate opens where the light is good, and teams still ship.",
       equipmentReward: {
