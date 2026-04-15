@@ -1,0 +1,18 @@
+{
+  "name": "ansible-hero",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "sprites:optimize": "node scripts/optimize-sprites.mjs",
+    "sprites:restore": "node public/sprites/originals/restore-sprites.mjs",
+    "build": "npm run sprites:optimize && tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.3"
+  }
+}

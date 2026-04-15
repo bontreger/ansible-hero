@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.local
+.DS_Store
+
+# Maintainer-only notes (deploy URLs, org workflows)
+OWNER-README.md
+
+# Local AI master exports — copy out with npm run sprites:restore; never optimized in place
+public/sprites/originals/
+
+public/sprites/prompts.txt

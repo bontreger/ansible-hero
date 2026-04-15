@@ -1,0 +1,644 @@
+/* Retro JRPG chrome — early FF vibe, DOM + canvas stage */
+
+:root {
+  --bg-dark: #0f0f18;
+  --panel: #1a1a2e;
+  --panel-border: #4a4a6a;
+  --text: #e8e8f0;
+  --text-dim: #a0a0b8;
+  --accent: #c9a227;
+  --accent-glow: #f0d060;
+  --hp-high: #4ade80;
+  --hp-low: #f87171;
+  --message-bg: rgba(10, 10, 20, 0.92);
+  --attack-hover: #2a2a48;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg-dark);
+  color: var(--text);
+  font-family: "Courier New", Courier, "Nimbus Mono PS", monospace;
+  font-size: 16px;
+  line-height: 1.35;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.app {
+  min-height: 100dvh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+
+/* —— Menu —— */
+.screen {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.screen.is-active {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.screen.is-active.battle-screen {
+  z-index: 2;
+}
+
+.menu-screen {
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+  padding: 1rem;
+  background: var(--bg-dark);
+}
+
+.game-title {
+  font-size: clamp(1.75rem, 6vw, 2.75rem);
+  font-weight: bold;
+  color: var(--accent-glow);
+  text-shadow: 2px 2px 0 #2a2008;
+  letter-spacing: 0.08em;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 1.1rem;
+  padding: 0.65rem 1.75rem;
+  border: 3px solid var(--panel-border);
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  color: var(--accent-glow);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn--small {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+}
+
+/* —— Scroll / premise —— */
+.scroll-screen {
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: var(--bg-dark);
+}
+
+.scroll-panel {
+  max-width: 36rem;
+  border: 4px solid var(--panel-border);
+  background: linear-gradient(180deg, #252538 0%, var(--panel) 100%);
+  padding: 1.5rem;
+  box-shadow: inset 0 0 0 2px #0a0a12;
+}
+
+.scroll-panel h2 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: var(--accent);
+  text-align: center;
+}
+
+.scroll-panel p {
+  margin: 0 0 0.85rem;
+  color: var(--text-dim);
+}
+
+.scroll-panel p:last-of-type {
+  margin-bottom: 1.25rem;
+}
+
+.scroll-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.scroll-actions--recap-retry {
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.interstitial-screen {
+  z-index: 1;
+}
+
+.interstitial-panel--recap {
+  max-width: 42rem;
+}
+
+.level-badge {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-align: center;
+}
+
+.level-subtitle {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+.level-enemy-name {
+  margin: 0 0 1.25rem;
+  font-weight: bold;
+  text-align: center;
+  color: var(--text);
+}
+
+.recap-heading {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  color: var(--accent-glow);
+  text-align: center;
+}
+
+.recap-label {
+  margin: 0.75rem 0 0.25rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.recap-tier-line {
+  margin: 0 0 0.5rem;
+  font-weight: bold;
+}
+
+.recap-attack-name {
+  margin: 0 0 0.35rem;
+  font-weight: bold;
+  color: var(--text);
+}
+
+.recap-attack-desc,
+.recap-prompt {
+  margin: 0 0 0.75rem;
+  color: var(--text-dim);
+  line-height: 1.45;
+}
+
+.recap-reward-block {
+  margin: 0.5rem 0 1rem;
+  padding: 0.65rem 0.75rem;
+  border: 2px solid var(--accent);
+  background: rgba(201, 162, 39, 0.08);
+}
+
+.recap-reward {
+  margin: 0;
+  color: var(--accent-glow);
+}
+
+.teaser-title {
+  text-align: center;
+  color: var(--accent-glow);
+}
+
+.teaser-body {
+  text-align: center;
+  color: var(--text-dim);
+  line-height: 1.45;
+}
+
+.victory-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem 1.5rem;
+  margin: 0 0 1.25rem;
+  text-align: left;
+  align-items: start;
+}
+
+@media (max-width: 640px) {
+  .victory-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.victory-layout__story .victory-story,
+.victory-layout__story .victory-cta {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.victory-story,
+.victory-cta {
+  max-width: 40rem;
+  margin: 0 0 1rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.victory-cta {
+  margin-bottom: 0;
+}
+
+.victory-relics-heading {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+/* —— Battle layout —— */
+.battle-screen {
+  flex: 1;
+  gap: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.battle-stage-wrap {
+  flex: 1.35;
+  min-height: 200px;
+  border: 4px solid var(--panel-border);
+  background: #12121c;
+  position: relative;
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.5);
+}
+
+#battle-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.battle-bottom {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(140px, 26%) 1fr;
+  gap: 12px;
+  align-items: stretch;
+  border: 4px solid var(--panel-border);
+  border-top: none;
+  background: var(--panel);
+  padding: 12px 12px 10px;
+}
+
+.player-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-height: 0;
+  min-width: 0;
+  border-right: 2px solid var(--panel-border);
+  padding-right: 10px;
+}
+
+.player-portrait {
+  flex: 1;
+  min-height: 55%;
+  width: 100%;
+  max-width: min(100%, 14rem);
+  border: 3px solid var(--panel-border);
+  background: #2a2a40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 1;
+}
+
+.player-portrait__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  display: block;
+  transform: scale(1.18);
+  transform-origin: center center;
+}
+
+.player-name {
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.player-hp {
+  font-size: 0.8rem;
+  color: var(--hp-high);
+  flex-shrink: 0;
+}
+
+.player-hp.is-low {
+  color: var(--hp-low);
+}
+
+#btn-reset {
+  flex-shrink: 0;
+}
+
+.attacks-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  min-width: 0;
+}
+
+.battle-prompt {
+  margin: 0;
+  font-size: clamp(0.82rem, 2vw, 0.98rem);
+  line-height: 1.35;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.attacks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  min-height: 0;
+  flex: 1;
+  align-self: stretch;
+}
+
+.attack-card {
+  border: 2px solid var(--panel-border);
+  background: #12121c;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.attack-card:hover:not(:disabled),
+.attack-card:focus-visible:not(:disabled) {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--attack-hover);
+}
+
+.attack-card:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.attack-card__name {
+  display: block;
+  color: var(--accent-glow);
+  font-weight: bold;
+  font-size: clamp(0.95rem, 2.2vw, 1.25rem);
+  margin-bottom: 4px;
+}
+
+.attack-card__desc {
+  display: block;
+  font-size: clamp(0.85rem, 2vw, 1.05rem);
+  color: var(--text-dim);
+  line-height: 1.25;
+  flex: 1;
+  overflow: auto;
+  min-height: 0;
+}
+
+/* —— Message overlay (intro / taunt / narrative) —— */
+.message-overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 12px;
+  pointer-events: none;
+}
+
+.message-overlay.is-visible {
+  display: flex;
+  pointer-events: auto;
+}
+
+.message-box {
+  width: 100%;
+  max-width: 100%;
+  border: 3px solid var(--panel-border);
+  background: var(--message-bg);
+  padding: 12px 14px;
+  min-height: 4.5rem;
+  cursor: pointer;
+}
+
+.message-box p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.message-hint {
+  margin-top: 8px !important;
+  font-size: 0.7rem !important;
+  color: var(--text-dim) !important;
+}
+
+/* Outcome (effectiveness) */
+.outcome-tier {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin-bottom: 8px !important;
+  color: var(--accent-glow);
+}
+
+.outcome-tier--not {
+  color: var(--hp-low);
+}
+
+.outcome-tier--slight {
+  color: #fbbf24;
+}
+
+.outcome-tier--normal {
+  color: #86efac;
+}
+
+.outcome-tier--super {
+  color: #a78bfa;
+}
+
+/* —— Victory / Defeat —— */
+.end-screen {
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: var(--bg-dark);
+}
+
+.end-panel {
+  max-width: 28rem;
+  width: 100%;
+  border: 4px solid var(--panel-border);
+  background: var(--panel);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.end-panel--victory {
+  max-width: 52rem;
+}
+
+.end-actions--victory-cta {
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.25rem;
+}
+
+.end-panel h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
+
+.end-panel--victory h2 {
+  color: var(--accent-glow);
+}
+
+.end-panel--defeat h2 {
+  color: var(--hp-low);
+}
+
+.equipment-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.equipment-list li {
+  padding: 6px 8px;
+  border: 2px solid var(--panel-border);
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.equipment-list li strong {
+  color: var(--accent-glow);
+}
+
+.end-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.enemy-name-tag {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.65);
+  border: 2px solid var(--panel-border);
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  color: var(--accent);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Boss taunt — speech bubble over battle stage */
+.taunt-bubble-root {
+  position: absolute;
+  right: 5%;
+  top: 8%;
+  max-width: min(88%, 22rem);
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.taunt-bubble-root[hidden] {
+  display: none !important;
+}
+
+.taunt-bubble {
+  position: relative;
+  border: 3px solid var(--panel-border);
+  background: var(--message-bg);
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.taunt-bubble:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.taunt-bubble::after {
+  content: "";
+  position: absolute;
+  right: 18%;
+  bottom: -12px;
+  width: 0;
+  height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 12px solid var(--panel-border);
+}
+
+.taunt-bubble__text {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.taunt-bubble__hint {
+  margin: 8px 0 0 !important;
+  font-size: 0.68rem !important;
+  color: var(--text-dim) !important;
+}
