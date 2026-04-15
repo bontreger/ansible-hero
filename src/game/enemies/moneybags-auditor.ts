@@ -36,7 +36,7 @@ export const moneybagsAuditor: EnemyDefinition = {
       description:
         "Track cycle time, failure recovery, and quality signals that precede revenue impact.",
       effectiveness: "normal",
-      fxKind: "iceVolley",
+      fxKind: "lightningFork",
       enemyResponse:
         "Leading indicators sharpen the narrative before dollars land — execs see where automation relieved pressure while you still build the bridge to booked savings.",
     },
@@ -46,7 +46,7 @@ export const moneybagsAuditor: EnemyDefinition = {
       description:
         "Model cost avoidance and revenue effects so ROI survives scrutiny and expected return ranks which automations get funded next.",
       effectiveness: "super",
-      fxKind: "summonCircle",
+      fxKind: "sonicWave",
       enemyResponse:
         "The purse opens: savings and risk reduction are spelled in the auditor’s ink — automation graduates from experiment to line item, and the backlog inherits oxygen.",
       equipmentReward: {

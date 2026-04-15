@@ -42,8 +42,8 @@ export const laptopLockdown: EnemyDefinition = {
         "A written path spreads good defaults on purpose — fewer mystery laptops — and the win deepens when someone keeps the scroll current after OS and toolchain churn.",
     },
     {
-      id: "devspaces-fireball",
-      name: "DevSpaces Fireball",
+      id: "devspaces-ice-blast",
+      name: "DevSpaces Ice Blast",
       description:
         "Offer browser-based, managed developer spaces with pinned images and centralized updates.",
       effectiveness: "super",
