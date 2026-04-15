@@ -144,6 +144,11 @@ body {
   margin-bottom: 1.25rem;
 }
 
+/* [hidden] must win over display:flex or recap Try again/Next rows both stay visible */
+.scroll-actions[hidden] {
+  display: none !important;
+}
+
 .scroll-actions {
   display: flex;
   justify-content: center;

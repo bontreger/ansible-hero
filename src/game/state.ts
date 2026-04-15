@@ -25,11 +25,18 @@ function shuffleArray<T>(items: readonly T[]): T[] {
   return a;
 }
 
-function shuffleAttackIdsForState(state: GameState): string[] {
-  const enemy = getEnemyByIndex(state.currentEnemyIndex);
+function shuffleAttackIdsForSegment(
+  enemyIndex: number,
+  bossPhase: GameState["battle"]["bossPhase"],
+): string[] {
+  const enemy = getEnemyByIndex(enemyIndex);
   if (!enemy) return [];
-  const segment = getActiveBattleSegment(enemy, state.battle.bossPhase);
+  const segment = getActiveBattleSegment(enemy, bossPhase);
   return shuffleArray(segment.attacks.map((a) => a.id));
+}
+
+function shuffleAttackIdsForState(state: GameState): string[] {
+  return shuffleAttackIdsForSegment(state.currentEnemyIndex, state.battle.bossPhase);
 }
 
 function getBossSwordReward(): Equipment | undefined {
@@ -92,15 +99,16 @@ export function enterLevelBriefFromScroll(state: GameState): GameState {
 export function enterBattleFromLevelBrief(state: GameState): GameState {
   const enemy = getEnemyByIndex(state.currentEnemyIndex);
   const boss = enemy && isBossEnemy(enemy);
+  const bossPhase = boss ? 1 : null;
   return {
     ...state,
     phase: "battle",
     battle: {
       subPhase: "taunt",
       pendingAttackId: null,
-      bossPhase: boss ? 1 : null,
+      bossPhase,
       bossClearedWithSuper: boss ? [false, false, false] : null,
-      attackOrderIds: null,
+      attackOrderIds: shuffleAttackIdsForSegment(state.currentEnemyIndex, bossPhase),
     },
   };
 }
@@ -177,7 +185,14 @@ export function advanceBattleSubPhase(state: GameState): GameState {
   if (subPhase === "intro") {
     return {
       ...state,
-      battle: { ...state.battle, subPhase: "taunt" },
+      battle: {
+        ...state.battle,
+        subPhase: "taunt",
+        attackOrderIds: shuffleAttackIdsForSegment(
+          state.currentEnemyIndex,
+          state.battle.bossPhase,
+        ),
+      },
     };
   }
   if (subPhase === "taunt") {
@@ -186,7 +201,6 @@ export function advanceBattleSubPhase(state: GameState): GameState {
       battle: {
         ...state.battle,
         subPhase: "choose_attack",
-        attackOrderIds: shuffleAttackIdsForState(state),
       },
     };
   }

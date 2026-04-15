@@ -47,6 +47,8 @@ To resize only (without a full build): `npm run sprites:optimize`.
 
 To refresh active sprites from your local `originals/` copies: `npm run sprites:restore` then `npm run sprites:optimize`.
 
+**Optional future FX** (see [`public/sprites/prompts.txt`](public/sprites/prompts.txt)): `restore-sprites.mjs` also copies those PNGs **if** they exist in `originals/` (missing files are skipped with a log line). They are not required for the current build.
+
 **Masters vs shipped:** keep huge source PNGs in `originals/` locally, or outside the repo; ship optimized files under `bg/`, `enemies/`, etc.
 
 ### Graphics verification checklist (when art “doesn’t update”)
